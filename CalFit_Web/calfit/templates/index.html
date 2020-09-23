@@ -1,0 +1,124 @@
+<!-- FORUM -->
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title></title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" href="{% static '/css/index_page.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/w3.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/fira_sans.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/css/fontawesome.css' %}" />
+
+      <script src="{% static '/js/velocity.js' %}"></script>
+      <script src="{% static '/js/popper.min.js' %}"></script>
+      <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static '/js/jquery-ui.min.js' %}"></script>
+      <script src="{% static '/js/bootstrap.min.js' %}"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
+    </head>
+
+
+    <body>
+        <!-- Your layout here -->
+    <div id="bg">&nbsp;</div>
+    <div style="max-width: 30%; margin-left: 5%; padding-top:5%; color:#22252a; font-weight: bolder;" onclick="toggleHideShow();">
+        <i class="fas fa-bars fa-2x"></i>
+    </div>
+    <div class="container-fluid">
+      <div class="row" style="height:100px;" >
+      </div>
+
+
+      <div class="row text-center" style="margin-bottom:10px;">
+        <div class="col-12" id="greeting">
+          Good Morning<!-- Auto-detect Time -->
+        </div>
+      </div>
+      <div class="row align-item-center text-center" style="margin-bottom:10px;">
+        <div class="col-12">
+          <div id="profile">
+            <i class="fas fa-user-circle fa-8x" ></i>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+            <div class="col-12" id="userName">
+                {{ username }}
+            </div>
+      </div>
+
+
+      <div class="family-member-container row align-item-center text-center">
+          <div class="col-6"><span class="heading-font">Goal</span></div>
+          <div class="col-6"><span class="heading-font">Current</span></div>
+          <div class="w-100"></div>
+          <div class="col-6"><span class="goal-step-font">{{ goal_today }}</span></div>
+          <div class="col-6"><span class="current-step-font">{{ current_steps }}</span></div>
+      </div>
+
+    </div>
+       <div id="menu">
+     <div style="height:20px;">&nbsp;</div>
+     <a>
+       <div style="padding: 44px 44px 0px 44px;margin-bottom: 20px;">
+           <div align="center">
+               <i class="fas fa-user-circle fa-7x" style="padding-bottom: 5px"></i>
+           </div>
+           <div align="center">
+               <span style="font-weight: bold; font-size: 16px;">{{ username }}</span>
+           </div>
+
+       </div>
+     </a>
+     <div id="menuicon">
+      <a href="/calfit/index/">
+       <div class="menuICON">
+         <i class="fas fa-home"></i><span class="menuTxt">HOME</span>
+       </div>
+      </a>
+      </div>
+
+
+    </div>
+    <div id="menuBG" onclick="toggleHideShow();">&nbsp;</div>
+    <div id="homeButton"></div>
+  </body>
+    <script>
+        function toggleHideShow() {
+            if ($( "#menu" ).css("left")=="-200px") {
+                $( "#menu" ).stop(true).animate({ left: "+=200px" }, 600 );
+                $("#menuBG").stop(true).animate({ left: "+=425px" }, 600 );
+            } else {
+                $("#menu").stop(true).animate({ left: "-=200px" }, 600);
+                $("#menuBG").stop(true).animate({ left: "-=425px" }, 600 );
+                //$("#homeButton").stop(true).animate({ bottom: "-=78px" }, 600);
+            }
+        }
+
+        $(document).ready(function() {
+
+            var today = new Date();
+            var h = today.getHours();
+
+            if (h >= 0 && h < 12) {
+                $('#greeting').text("Good Morning");
+            }
+            else if (h >= 12 && h < 18) {
+                $('#greeting').text("Good Afternoon");
+            }
+            else {
+                $('#greeting').text("Good Evening");
+            }
+        })
+
+    </script>
+</html>
