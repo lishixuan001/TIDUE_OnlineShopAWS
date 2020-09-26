@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>Merchandise View</title>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{% static '/index/img/core-img/favicon.ico' %}">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static '/index/css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static '/index/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Search Wrapper Area Start -->
+    <div class="search-wrapper section-padding-100">
+        <div class="search-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-content">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                            <button type="submit"><img src="{% static '/index/img/core-img/search.png' %}" alt=""></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Wrapper Area End -->
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a href="#"><img src="{% static '/index/img/core-img/logo.png' %}" alt=""></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#"><img src="{% static '/index/img/core-img/logo.png" alt=""></a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li><a href="/transactions/index">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li class="active"><a href="#">Product</a></li>
+                    <li><a href="#">Cart</a></li>
+                    <li><a href="#">Checkout</a></li>
+                </ul>
+            </nav>
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+                <a href="/transactions/logout" class="btn amado-btn active">Logout</a>
+            </div>
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <a href="#" class="cart-nav"><img src="{% static '/index/img/core-img/cart.png' %}" alt=""> Cart <span>(0)</span></a>
+                <a href="#" class="fav-nav"><img src="{% static '/index/img/core-img/favorites.png' %}" alt=""> Favourite</a>
+                <a href="#" class="search-nav"><img src="{% static '/index/img/core-img/search.png' %}" alt=""> Search</a>
+            </div>
+            <!-- Social Button -->
+            <div class="social-info d-flex justify-content-between">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </header>
+        <!-- Header Area End -->
+
+        <div class="cart-table-area section-padding-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="cart-title mt-50">
+                            <h2>商品列表</h2>
+                        </div>
+
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>商品</th>
+                                        <th>价格</th>
+                                        <th>库存</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for product in products %}
+
+                                    <tr>
+                                        <td class="cart_product_img">
+                                            <a href="#"><img src="{% get_static_prefix %}index/img/bg-img/cart{{ product.idx }}.jpg" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <h5>{{ product.name }}</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span>¥{{ product.price }}</span>
+                                        </td>
+                                        <td class="qty">
+                                            {% if product.sufficient %}
+                                                <p class="manymany"><i class="fa fa-circle"> {{ product.stock }}</i></p>
+                                            {% else %}
+                                            <p class="shortshort"><i class="fa fa-circle"> {{ product.stock }}</i></p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <form class="cart clearfix" method="post">
+                            <hr>
+                            <p>库存红线</p>
+                            <input type="number" class="the_input qty-text" id="qty" step="1" min="1" max="300" name="limit" value="{{ limit }}">
+
+                            <button class="the_btn" type="submit">确定</button>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="{% static '/index/js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static '/index/js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static '/index/js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static '/index/js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static '/index/js/active.js' %}"></script>
+
+</body>
+
+</html>
