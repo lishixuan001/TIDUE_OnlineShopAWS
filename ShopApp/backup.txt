@@ -1,0 +1,4 @@
+sudo supervisorctl reload
+sudo systemctl reload nginx
+
+/home/ubuntu/env/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/TIDUE_OnlineShopAWS/ShopApp/app.sock mysite.wsgi:application
