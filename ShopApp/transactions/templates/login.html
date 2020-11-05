@@ -40,63 +40,32 @@
 					{% csrf_token %}
 
 					<span class="login100-form-title p-b-70">
-						Welcome
-					</span>
-					<span class="login100-form-avatar">
-						<img src="{% static '/login/images/avatar-01.jpg' %}" alt="AVATAR">
+						Submit Screenshot
 					</span>
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
-						<input class="input100" type="text" name="username">
-						<span class="focus-input100" data-placeholder="Username"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-						<input class="input100" type="password" name="password">
-						<span class="focus-input100" data-placeholder="Password"></span>
+						<input class="input100" type="text" name="name">
+						<span class="focus-input100" data-placeholder="Name"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Submit
 						</button>
 					</div>
 
-					{# If username not exist #}
-					{% if user_not_exist %}
+                    {% if submit_error %}
 					<div class="m-t-20">
-						<span id="error_msg" style="color:red;font-weight:bold">Username Not Exist</span>
+						<span id="error_msg" style="color:red;font-weight:bold">Submit Error</span>
 					</div>
 					{% endif %}
 
-					{# If password not match #}
-					{% if psw_not_match %}
+                    {% if submit_error %}
 					<div class="m-t-20">
-						<span id="error_msg" style="color:red;font-weight:bold">Password Not Match</span>
+						<span id="error_msg" style="color:green;font-weight:bold">Submit Success</span>
 					</div>
 					{% endif %}
 
-					<ul class="login-more p-t-50">
-						<li class="m-b-8">
-							<span class="txt1">
-								Forgot
-							</span>
-
-							<a href="#" class="txt2">
-								Username / Password?
-							</a>
-						</li>
-
-						<li>
-							<span class="txt1">
-								Don’t have an account?
-							</span>
-
-							<a href="/transactions/registration" class="txt2">
-								Sign up
-							</a>
-						</li>
-					</ul>
 				</form>
 			</div>
 		</div>
