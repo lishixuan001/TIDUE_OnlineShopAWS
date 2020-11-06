@@ -8,17 +8,13 @@ def index(request):
 
     if request.method == 'POST':
         name = request.POST.get('name')
-        # image = request.FILES['image']
-        #
-        # if not (image.name.endswith("png") or image.name.endswith("jpg")):
-        #     context["file_error"] = True
-        #     return render(request, 'new_car.html', context=context)
+        number = request.POST.get('number')
 
         if Person.objects.filter(name=name).exists():
             context["submit_error"] = True
         else:
             # Person.objects.create(name=name, image=image)
-            Person.objects.create(name=name)
+            Person.objects.create(name=name, number=number)
             context["submit_success"] = True
 
         return render(request, 'index.html', context=context)
